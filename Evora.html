@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Formulário Base</title>
+<script src = "https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" media="screen and (min-width: 0px)" href="css/small.css" />
+<link rel="stylesheet" type="text/css" media="screen and (min-width: 900px)" href="css/medium.css" />
+<link rel="stylesheet" type="text/css" media="screen and (min-width: 1350px)" href="css/large.css" />
+</head>
+<body>
+<div class="responsive">
+    <div id="toPDF">  
+        <div  class="center" id = "header" >
+            <p><img src="imagens/header.jpg" width="1000" height="200" /></p>
+            <h1 align="center">CELEBRAÇÃO DE CONTRATO DE FORNECIMENTO</h1>
+        </div>
+        <div class="center" id="dadosdesubmissão">
+            <table id="tbregistado">
+                <tr>
+                <td><label>Registado em:</label> <input class="borda" type="text" id="registado_em" size="50" /></td>
+                <td align="right">Exmo(a). Senhor(a)<p>Presidente da Câmara Municipal de Évora</p></td>
+                </tr>
+            </table>    
+        </div>
+        <div class="center" id= "escolha1">
+            <h2> REQUERENTE</h2>
+            <table>
+                <tr>
+                    <td>
+                        <label><input type="checkbox" id="singular" value="checkbox" onclick="desabilitar(this.checked,'coletiva'), mostrar('requerente'),mostrar('notisingular'), marcarTodos(this.checked) "/>
+                        Singular </label>
+                    </td>
+                    <td>
+                        <label><input type="checkbox" id="coletiva" value="checkbox"  onclick="desabilitar(this.checked,'singular'), mostrar('representante'), marcarTodos(this.checked) "/>
+                        Coletiva </label>
+                    </td>
+                </tr>
+            </table>    
+        </div>
+        <div class="center" id= "identificacaoentidade">
+         <div id = requerente>
+        <table>
+            <tr>
+                <td><label>Nome:*</label> <input class="borda" name="nome_requerente" type="text" id="nome_requerente" size ="125" required/></td>
+            </tr>
+            <tr>
+                <td>
+                <label>Domilicio:*</label> <input class="borda" name="domicilio_requerente" type="text" id="domicilio_requerente" size="70" />
+                <label>Nº:</label> <input class="borda" name="n_requerente" type="text" id="n_requerente" size="10" />
+                <label>Lote/Andar</label> <input class="borda" name="lote_requerente" type="text" id="lote_requerente" size="15" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <label>Codígo Postal:</label> <input class="borda" name="codigo_requerente" type="text" id="codigo_requerente" size="60" />
+                <label>Localidade:</label> <input class="borda" name="localidade_requerente" type="text" id="localidade_requerente" size="40" />
+                </td>
+            </tr>
+            <tr>
+                <td><label>NIF:*</label> <input class="borda" name="nif_requerente" type="text" id="nif_requerente" size="128" required/></td>
+            </tr>
+            <tr>
+                <td><label>Tipo de Documento de Identificação:</label> <input class="borda" name="identificacao_requerente" type="text" id="identificacao_requerente" size="96"/></td>
+            </tr>
+            <tr>
+                <td>
+                <label>Nº:</label> <input class="borda" name="n2_requerente" type="text" id="n2_requerente" size="97" />
+                <label>Valido até:</label> <input class="borda" name="validoate_requerente" type="date" id="validoate_requerente" size="20" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <label>Contacto Telefónico</label> <input class="borda" name="contacto_requerente" type="text" id="contacto_requerente" size="54" />
+                <label>Fax:</label> <input class="borda" name="fax_requerente" type="text" id="fax_requerente" size="48"/>
+                </td>
+            </tr>
+            <tr>
+                <td><label>Email:</label> <input class="borda" name="email_requerente" type="text" id="email_requerente" size="126"/></td>
+            </tr>
+            <tr>
+                <td><label>Qualidade de:</label> <input class="borda" name="qualidadede_requerente" type="text" id="qualidadede_requerente" size="118"/></td>
+            </tr>
+        </table>
+        <label> (Os campos assinalados com* são de preenchimento obrigátorio)</label>
+        </div>
+        <div id = representante>
+            <table>
+                <tr>
+                    <td><label>Denominação:*</label> <input class="borda" name="denominacao_representante" type="text" id="denominacao_representante" size="117" required/></td>
+                </tr>
+                <tr>
+                    <td>
+                    <label>Sede:*</label> <input class="borda" name="sede_representante" type="text" id="sede_representante" size="54" required/>
+                    <label>Nº :</label> <input class="borda" name="n_representante" type="text" id="n_representante" size="20" />
+                    <label>Lote/Andar</label> <input class="borda" name="lote_representante" type="text" id="lote_representante" size="25" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <label>Codígo Postal:</label> <input class="borda" name="codigo_representante" type="text" id="codigo_representante" size="59" />
+                    <label>Localidade:*</label> <input class="borda" name="localidade_representante" type="text" id="localidade_representante" size="40" required/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>NIPC:*</label> <input class="borda" name="nipc_representante" type="text" id="nipc_representante" size="126" required/></td>
+                </tr>
+                <tr>
+                    <td><label>Tipo de Documento de Identificação:</label> <input class="borda" name="identicacao_representante" type="text" id="identicacao_representante" size="96"/></td>
+                </tr>
+                <tr>
+                    <td>
+                    <label>Nº:</label> <input class="borda" name="n2_representante" type="text" id="n2_representante" size="97" />
+                    <label>Valido até:</label> <input class="borda" name="validoate_representante" type="date" id="validoate_representante" size="20" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Certidão Comercial Permanente(Código)</label> <input class="borda" name="certidao_representante" type="text" id="certidao_representante" size="92"/></td>
+                </tr>
+                <tr>
+                    <td>
+                    <label>Contacto Telefónico</label> <input class="borda" name="contacto_requerente" type="text" id="contacto_requerente" size="54" />
+                    <label>Fax:</label> <input class="borda" name="fax_requerente" type="text" id="fax_requerente" size="48"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Email:</label> <input class="borda" name="email_requerente" type="text" id="email_requerente" size="127"/></td>
+                </tr>
+                <tr>
+                    <td><label>Qualidade de:</label> <input class="borda" name="qualidadede_requerente" type="text" id="qualidadede_requerente" size="119"/></td>
+                </tr>
+            </table>
+            <label> (Os campos assinalados com* são de preenchimento obrigátorio)</label>
+        </div>
+        </div>
+        <div class="center" id= "notificacoes">
+            <h2>NOTIFICAÇÕES</h2>    
+            <table id=notisingular>
+                <tr>
+                <td width="600"><p><strong>Consinto</strong> que as notificações/comunicações sejam feitas via:
+                    (aplicável a pessoas singulares)</p></td>
+                <td>
+                <td>
+                    <label><input type="checkbox" name="caixa_postal_eletronica" id="caixa_postal_eletronica" value="checkbox" />
+                    Caixa Postal Eletrónica (ViaCTT)</label><br>
+                    <label>
+                    <input type="checkbox" name="telefone_notificacao" id="telefone_notificacao" value="checkbox" />
+                    Telefone</label><br>
+                    <label>
+                    <input type="checkbox" name="fax_notificacao" id="fax_notificacao" value="checkbox" />
+                    Fax</label><br>
+                    <label>
+                    <input type="checkbox" name="email_notificacao" id="email_notificacao" value="checkbox" />
+                    E-mail</label>
+                </td>
+                    
+                  
+              </table>
+        </div>
+        <div class="center" id= "notificacoescaixapostal">
+            <table id=notificacoescaixapostal>
+                <tr>
+                  <td width="600">As notificações/comunicações feitas por <strong> via postal</strong>  deverão ser enviadas preferencialmente para a seguinte morada:</p></td>
+                    <td>
+                        <label><input type="checkbox" name="requerente_notificacao" id="requerente_notificacao" value="checkbox" onclick="desabilitar(this.checked,'representante_notificacao'),desabilitar(this.checked,'outramoradas')" />
+                        Requerente</label><br>
+                        <label><input type="checkbox" name="representante_notificacao" id="representante_notificacao" value="checkbox" onclick="desabilitar(this.checked,'requerente_notificacao'),desabilitar(this.checked,'outramoradas')" />
+                        Representante</label><br>
+                        <label><input type="checkbox" id="outramoradas" value="checkbox"  onclick="mostrar('outramorada'), desabilitar(this.checked,'requerente_notificacao'),desabilitar(this.checked,'representante_notificacao')"/>
+                        Outra Morada: </label>
+                    </td>
+                </tr>    
+            </table>
+            <table id = outramorada>
+                <tr>
+                    <td>
+                    <label>Domilicio:</label> <input class="borda" name="domicilio_requerente" type="text" id="domicilio_requerente" size="70" />
+                    <label>Nº:</label> <input class="borda" name="n_requerente" type="text" id="n_requerente" size="10" />
+                    <label>Lote/Andar</label> <input class="borda" name="lote_requerente" type="text" id="lote_requerente" size="17" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <label>Codígo Postal:</label> <input class="borda" name="codigo_requerente" type="text" id="codigo_requerente" size="60" />
+                    <label>Localidade:</label> <input class="borda" name="localidade_requerente" type="text" id="localidade_requerente" size="40" />
+                    </td>
+                </tr>
+            </table>          
+        </div>
+        <div class= "center" id ="pedido">
+            <h2>PEDIDO</h2>      
+            <table id="pedido">
+                <tr>
+                    <td>Vem requerer a recolha de resíduos diferenciados e indiferenciados, nas seguintes condições:</td>
+                </tr>
+                <tr>
+                    <td>
+                        Tipo de material a recolher:<br>
+                        <label><input type="checkbox" name="caixa_postal_eletronica" id="caixa_postal_eletronica" value="checkbox" />
+                            Monos (não se incluindo nesta prestação a remoção em resultado de desocupação de imóveis - artigo 18.º do
+                            Regulamento Municipal de Resíduos Sólidos e Limpeza Pública)</label><br>
+                    <label>Tipo:</label> <input class="borda" name="n_requerente" type="text" id="n_requerente" size="125" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><input type="checkbox" name="caixa_postal_eletronica" id="caixa_postal_eletronica" value="checkbox" />
+                            Verdes (devidamente atados, cortados e ensacados - artigo 19.º do Regulamento Municipal de Resíduos Sólidos e
+                            Limpeza Pública)</label><br>
+                    <label>Tipo:</label> <input class="borda" name="n_requerente" type="text" id="n_requerente" size="127" /><br>
+                    <label>Quantidade (volume)</label> <input class="borda" name="n_requerente" type="text" id="n_requerente" size="111" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label><input type="checkbox" name="caixa_postal_eletronica" id="caixa_postal_eletronica" value="checkbox" />
+                            Resíduos de Construção e Demolição (Saco "Big Bag" de 1m³ para a deposição de resíduos de construção e demolição
+                            - mistura de inertes - código LER 17 01 07 - artigo 24.º do Regulamento Municipal de Resíduos Sólidos e Limpeza Pública)</label><br>
+                    <label>Data para remoção(até 5 dias úteis):</label> <input class="borda" name="n_requerente" type="text" id="n_requerente" size="95" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><label><input type="checkbox" name="caixa_postal_eletronica" id="caixa_postal_eletronica" value="checkbox" />
+                        Papel cartão (n.º 6 do artigo 20.º do Regulamento Municipal de Resíduos Sólidos e Limpeza Pública)</label><br>
+                <label>Quantidade (volume):</label> <input class="borda" name="n_requerente" type="text" id="n_requerente" size="111" /></td>
+                </tr>
+                <tr>
+                    <td><label>Outros:</label> <input class="borda" name="identificacao_requerente" type="text" id="identificacao_requerente" size="125"/></td>
+                </tr>
+                <tr>
+                    <td><label>A morada da recolha é a mesma que a morada do Requerente?<label><input type="checkbox" name="caixa_postal_eletronica" id="caixa_postal_eletronica_s" value="checkbox" onclick="desabilitar(this.checked,'caixa_postal_eletronica_n')"/>
+                        Sim</label>
+                        <label><input type="checkbox" name="caixa_postal_eletronica" id="caixa_postal_eletronica_n" value="checkbox"  onclick="mostrar('moradarecolha'), desabilitar(this.checked,'caixa_postal_eletronica_s')"/>
+                        Não. Indique:</label></td>
+                </tr>
+            </table>
+            <div id= moradadarecolha>
+                <table id = moradarecolha>
+                    <tr>
+                        <td>
+                        <label>Domilicio:*</label> <input class="borda" name="domicilio_requerente" type="text" id="domicilio_requerente" size="70" />
+                        <label>Nº:</label> <input class="borda" name="n_requerente" type="text" id="n_requerente" size="10" />
+                        <label>Lote/Andar</label> <input class="borda" name="lote_requerente" type="text" id="lote_requerente" size="15" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <label>Codígo Postal:</label> <input class="borda" name="codigo_requerente" type="text" id="codigo_requerente" size="30" />
+                        <label>Localidade:*</label> <input class="borda" name="localidade_requerente" type="text" id="localidade_requerente" size="68" />
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class = "center" id= "informacoesadicionais">
+            <h2>INFORMAÇÕES ADICIONAIS</h2> 
+            <table>
+                <tr>
+                  <td><ol type ="1">
+                      <li> Os dados pessoais recolhidos neste pedido são necessários, única e exclusivamente, para dar cumprimento ao disposto no artigo 102.º do Código do Procedimento Administrativo (CPA), no artigo 17.º do Decreto-Lei n.º 135/99, de 22 de abril e/ou ao previsto na legislação específica aplicável ao pedido formulado.</li>
+                      <li> O tratamento dos dados referidos no ponto 1 por parte do Município respeitará a legislação em vigor em matéria de proteção de dados pessoais e será realizado com base seguintes condições:</li>
+                      <li> Orftretrtrt
+                      <ul>
+                        <li><strong>Responsável pelo tratamento</strong> - Município de Évora; </li>
+                        <li><strong>Finalidade do tratamento</strong> - Cumprimento de uma obrigação jurídica (CPA e/ou de legislação específica aplicável ao pedido formulado) ou necessário ao exercício de funções de interesse público; </li>
+                        <li><strong>Destinatário(s) dos dados</strong> - Serviço municipal com competência para analisar ou intervir no pedido, de acordo com a orgânica municipal em vigor; </li>
+                        <li><strong>Conservação dos dados pessoais </strong> - Prazo definido na legislação aplicável ao pedido. </li>
+                        </ul>
+                    <li> Para mais informações sobre as práticas de privacidade do Município consulte o nosso site em www.cm-evora.pt ou envie um e-mail para cmevora@cm-evora.pt.</li>
+                    <li> Os documentos apresentados no âmbito do presente pedido são documentos administrativos, pelo que o acesso aos mesmos se fará em respeito pelo regime de acesso à informação administrativa e ambiental e reutilização dos documentos administrativos (Lei n.º 26/2016, de 22 de agosto).</li>
+                  </ol></td>
+                </tr>
+              </table>
+        </div>
+        <div class = "center" id= "outrasdeclaracoes">
+            <h2>OUTRAS DECLARAÇÕES</h2> 
+            <table>
+                <tr>
+                    <td>
+                        <label>*<input type="checkbox" id="subscritor" value="checkbox"/>
+                        O(A) subscritor(a), sob compromisso de honra e consciente de incorrer em eventual responsabilidade penal caso preste falsas declarações, declara que os dados constantes do presente requerimento correspondem à verdade.
+                        </label>
+                    </td>
+                </tr>
+            </table><br>
+
+            <h2>IDENTIFICAÇÃO DE FIGURAS PROCEDIMENTAIS</h2>
+
+            <table>
+                <tr>
+                    <td><label>Responsável pela Direção do Procedimento:</label> <input class="borda" name="textfield3" type="text" id="registado_em" size="88"/></td>
+                </tr>
+                <tr>
+                    <td>
+                    <label>Contacto Telefónico</label> <input class="borda" name="textfield4" type="text" id="registado_em" size="50" />
+                    <label>E-mail:</label> <input class="borda" name="textfield4" type="text" id="registado_em" size="50" />
+                    </td>
+                </tr> 
+            </table><br>
+            <table>
+                <tr>
+                    <td><label>Gestor(a) do Procedimento:</label> <input class="borda" name="textfield3" type="text" id="registado_em" size="105"/></td>
+                </tr>
+                <tr>
+                    <td>
+                    <label>Contacto Telefónico</label> <input class="borda" name="textfield4" type="text" id="registado_em" size="50" />
+                    <label>E-mail:</label> <input class="borda" name="textfield4" type="text" id="registado_em" size="50" />
+                    </td>
+                </tr> 
+            </table>
+            <h2>FUNDAMENTAÇÃO DA APRESENTAÇÃO DE DOCUMENTOS</h2> 
+            <textarea name="textarea" id="fundamentacao_da_nao_apresentacao_de_documentos" cols="134" rows="4"></textarea><br>
+
+            <br><table>
+                <tr>
+                  <td><p>Pede  deferimento,</p>
+                    <script language=javascript type="text/javascript">
+                        now = new Date
+                        if((now.getMonth()+1) <= 9 && now.getDate() <= 9){
+                        document.write ("Évora, 0" + now.getDate() + "/" + (now.getMonth()+1) + "/" + now.getFullYear() )
+                        }
+                        else{
+                        document.write ("Évora, " + now.getDate() + "/" + (now.getMonth()+1) + "/" + now.getFullYear() ) 
+                        }
+                    </script><br>
+                    <br><input type="checkbox" name="checkbox21" id="oa_requerente" value="checkbox" onclick="desabilitar(this.checked,'oa_representante')" /> O(A) Requerente </label>
+                    <label>
+                    <input type="checkbox" name="checkbox22" id="oa_representante" value="checkbox" onclick="desabilitar(this.checked,'oa_requerente')"  /> O(A) Representante</label>
+                    </td>
+                </tr>
+                <tr>
+                  <td height="141" bgcolor="#D8D8D8"></td>
+                </tr>
+                <tr>
+                  <td height="52"><div class="center">(Assinatura do(a) requerente ou de outrem a seu rogo, se o(a) mesmo(a) não souber ou não puder assinar)</div></td>
+                </tr>
+            </table>
+            <label><input type="checkbox" id="subscritor" value="checkbox"  onclick="mostrar('assinaturafun')"/>
+                A preencher pelo funcionário, no caso de atendimento presencial:</label><br>
+                <br><table id=assinaturafun>
+                    <tr>
+                        <td>
+                              <label>
+                                <input type="checkbox" name="checkbox23" id="conferi_identificacao_do_requerente_representante" value="checkbox" />
+                                Conferi a identificação do(a) Requerente/Representante através dos documentos de identificação exibidos.</label><br>
+                                <label>
+                                <input type="checkbox" name="checkbox24" id="validei_assinatura" value="checkbox" />
+                                Validei a conformidade da assinatura de acordo com o documento exibido.</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="141" width="1000" bgcolor="#D8D8D8"></td>
+                    </tr>
+                    <tr>
+                        <td><p class="center">O(A) Funcionário(a)</p></td>
+                    </tr>
+                </table><br>
+
+
+        </div>
+        <div align = "center" class="botao">
+            <button class="button" type="submit" onclick="submit(event)" data-html2canvas-ignore="true">Submit</button><br>
+            <table class="footer">
+                <tr>
+                    <td><p><i class="fa fa-road"></i>Praça do Sertório | 7004-506 Évora | Portugal </p>
+                        <p>NIPC: 504 828 576</p></td>
+                    </td>
+                    <td><p align ="right"><i class="fa fa-phone"></i> 266 777 000  <i class="fa fa-fax"></i> 266 702 950 </p>
+                        <p align ="right"> <i class="fa fa-globe"></i> cmevora@cm-evora.pt  <i class="fa fa-university"></i> www.cm-evora.pt</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="footer" class="center">
+            <p width = "1000"><img src="imagens/footer.png" width="1000" height="120" /></p>   
+        </div>
+    </div>
+</div>
+<script>
+function desabilitar(selecionado, elemento){
+    var escolha = document.getElementById(elemento);
+    escolha.disabled = selecionado;
+}
+
+ function mostrar(elemento){
+  var display = document.getElementById(elemento).style.display;
+    if(display == "block"){
+        document.getElementById(elemento).style.display = 'none';
+    }else{
+        document.getElementById(elemento).style.display = 'block';
+    }   
+}
+  function cbChange(obj) {
+  var cbs = document.getElementsByClassName("cb");
+    for (var i = 0; i < cbs.length; i++) {
+        cbs[i].checked = false;
+    }
+    obj.checked = true;
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+    const utilizadorFormularioId = urlParams.get("UtilizadorFormularioId")
+    const redirectUrl = urlParams.get("RedirectUrl")
+    const token = urlParams.get("token")
+    const anonymous = urlParams.get("tempkey")
+	  const app = urlParams.get("app")
+
+    const url1 = `http://onlinedesk/odfrontend/api/Pedidos/${utilizadorFormularioId}/prepreenchimento`;
+    const url2 = `http://onlinedesk/odfrontend/api/Pedidos/${utilizadorFormularioId}/submeter/web`;
+
+    const headers = { 'OD-NG-App': app };
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    } else if (anonymous) {
+      headers['OD-Temporay-Key'] =  anonymous;
+    }
+    if(token){
+      const request = new Request(url1, {
+        method: 'GET',
+        headers
+      });
+
+      fetch(request)
+        .then(response => response.json())
+        .then(data => {
+        data.result.forEach(x => {
+        document.getElementsByName(x.campo)
+          .forEach(el=>el.value = x.valor !== null ? x.valor : "");
+      });
+      })
+    }
+
+    function submit(event) {
+	 window.scrollTo(0,0);
+      event.preventDefault();
+      event.stopPropagation();
+
+      html2canvas(document.body)
+        .then((canva) => new Promise((resolve) => {			
+                var imgData = canva.toDataURL('image/jpeg',100,100);							                
+				var doc = new jsPDF("p", "mm", "a4");
+                doc.addImage(imgData, 'JPG', 1, 1,250,300);			
+				var blob= doc.output("blob");
+				resolve(blob);								
+			}))
+        .then((file) => {
+          const body = new FormData();
+          body.append('campos', JSON.stringify([
+            {
+                campo: 'nome',
+                valor: document.getElementById("nome_requerente").value,
+            },
+            {
+                campo: 'domicilio_requerente',
+                valor: document.getElementById("domicilio_requerente").value,
+            },
+            {
+                campo: "nif_requerente",
+                valor: document.getElementById("nif_requerente").value,
+            }
+          ]));
+          body.append('ficheiro', file);
+          return Promise.resolve(body);
+        })
+        .then((body) =>
+          fetch(new Request(url2, {
+            method: 'POST',
+            headers,
+            body
+          }))
+        )
+	.then(() => location.href = redirectUrl);
+    }
+		
+</script>
+</body>
+</html>
